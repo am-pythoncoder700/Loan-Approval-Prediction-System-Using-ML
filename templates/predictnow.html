@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.armstrongwatson.co.uk%2Fnews%2F2021%2F12%2F5-common-reasons-borrow-right-now&psig=AOvVaw3s85jHOSQrjUwKJgH2yisZ&ust=1719670622911000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNi5mbq-_oYDFQAAAAAdAAAAABAJ');
+    }
+
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .navbar .container2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar .logo {
+        color: #0c0c0e;
+        text-decoration: none;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .navbar .nav-links {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar .nav-links li {
+        margin-left: 20px;
+    }
+
+    .navbar .nav-links a {
+        color: #0e08317e;
+        text-decoration: none;
+        font-size: 1em;
+        transition: color 0.3s;
+    }
+
+    .navbar .nav-links a:hover {
+        color: #ff6347;
+    }
+
+    body {
+        background-image: url("{{ url_for('static', filename='images/banner.jpg') }}");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .hero {
+        text-align: center;
+        padding: 100px 20px;
+        height: 65vh;
+        width: 90vw;
+    }
+
+
+    .container2 {
+        margin: auto;
+        padding: auto;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        margin-top: 170px;
+    }
+
+    .hero p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+    }
+
+    .hero .cta-button {
+        background-color: #ff6347;
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        font-size: 1.2em;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .hero .cta-button:hover {
+        background-color: #e55337;
+    }
+
+    @media (max-width: 768px) {
+        .navbar .nav-links {
+            display: none;
+        }
+
+        .navbar .logo {
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2em;
+        }
+
+        .hero p {
+            font-size: 1em;
+        }
+    }
+
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input,
+    select,
+    button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #218838;
+    }
+
+    #result {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 1.2em;
+        color: #333;
+    }
+</style>
+</head>
+<nav class="navbar">
+    <div class="container2">
+        <a href="#" class="logo">Loan Approval Prediction</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+<body>
+    <div class="container">
+        <h1>Loan Approval Prediction</h1>
+        <form action="{{url_for('predictnow')}}" method="post" id="loanForm">
+            <div class="form-group">
+                <label for="creditHistory">Credit History:</label>
+                <select id="creditHistory" name="creditHistory" required>
+                    <option value="1">Good</option>
+                    <option value="0">Bad</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="coapplicantIncome">Coapplicant Income:</label>
+                <input type="number" id="coapplicantIncome" name="coapplicantIncome" required>
+            </div>
+            <div class="form-group">
+                <label for="applicantIncome">Applicant Income:</label>
+                <input type="number" id="applicantIncome" name="applicantIncome" required>
+            </div>
+            <div class="form-group">
+                <label for="loanAmount">Loan Amount (in thousands):</label>
+                <input type="number" id="loanAmount" name="loanAmount" required>
+            </div>
+            <div class="form-group">
+                <label for="education">Education:</label>
+                <select id="education" name="education" required>
+                    <option value="0">Graduate</option>
+                    <option value="1">Not Graduate</option>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="result"></div>
+</body>
+
+</html>
